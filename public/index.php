@@ -1,3 +1,10 @@
+<?php
+require "../src/bddManager.php";
+require "../src/applicationManager.php";
+
+$conn = getConnection();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,16 +12,16 @@
     <title>Déposez votre candidature</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="web/css/main.css"
+    <link rel="stylesheet" href="css/main.css"
 </head>
 <body>
 <header>
-    <img src="web/images/logo-la-favorite.png" alt="logo-la-favorite" class="fav pull-left">
-    <img src="web/images/logo-CNAM-ARA.png" alt="logo-cnam-ara" class="cnam pull-right">
+    <img src="images/logo-la-favorite.png" alt="logo-la-favorite" class="fav pull-left">
+    <img src="images/logo-CNAM-ARA.png" alt="logo-cnam-ara" class="cnam pull-right">
 </header>
 <div class="container">
     <h1 class="text-center">Pré-inscription en Licence L3 Gestion des ressources humaines</h1>
-    <form action="application.php" method="POST" class="col-xs-12" enctype="multipart/form-data">
+    <form action="../pages/application.php" name="application" method="POST" class="col-xs-12" enctype="multipart/form-data">
         <input type="hidden" name="school" value="MTU="/>
         <div class="row">
             <div class="form-group col-xs-4 col-sm-2">
@@ -45,17 +52,17 @@
             <div class="form-group col-xs-12">
                 <label>Date de naissance *</label>
                 <div class="birthdate">
-                    <select name="day" class="day col-xs-2 col-sm-offset-2 col-md-2 col-md-offset-1">
+                    <select name="day" class="day col-xs-2 col-sm-offset-2 col-md-2 col-md-offset-1" required>
                         <option value="">Jour</option>
                         <?php for ($day = 1 ; $day <= 31 ; $day++){ ?>
                             <option value="<?php echo $day ?>"><?php echo $day; ?></option><?php }?>
                     </select>
-                    <select name="month" class="month col-xs-2 col-xs-offset-2 col-sm-offset-1 col-md-2 col-md-offset-2">
+                    <select name="month" class="month col-xs-2 col-xs-offset-2 col-sm-offset-1 col-md-2 col-md-offset-2" required>
                         <option value="">Mois</option>
                         <?php for ($month = 1 ; $month <= 12 ; $month++){ ?>
                             <option value="<?php echo $month ?>"><?php echo $month; ?></option><?php }?>
                     </select>
-                    <select name="year" class="year col-xs-2 col-xs-offset-2 col-sm-offset-1 col-md-2 col-md-offset-2">
+                    <select name="year" class="year col-xs-2 col-xs-offset-2 col-sm-offset-1 col-md-2 col-md-offset-2" required>
                         <option value="">Année</option>
                         <?php for ($year = 1950 ; $year <= date('Y') ; $year++){ ?>
                             <option value="<?php echo $year ?>"><?php echo $year; ?></option><?php }?>
@@ -108,20 +115,20 @@
         <div class="row">
             <div class="form-check form-check-inline col-xs-12 col-sm-12 license">
                 <label class="form-check-label">Permis *</label>
-                <input class="form-check-input" type="radio" name="driving-license" id="driving-license1" value="Oui"> Oui
+                <input class="form-check-input" type="radio" name="driving-license" id="driving-license1" value="Oui" required> Oui
                 <input class="form-check-input" type="radio" name="driving-license" id="driving-license2" value="Non"> Non
                 <input class="form-check-input" type="radio" name="driving-license" id="driving-license3" value="En cours"> En cours
             </div>
             <div class="form-check form-check-inline col-xs-12 col-sm-12 vehicle">
                 <label class="form-check-label">Véhicule *</label>
-                <input class="form-check-input" type="radio" name="vehicle" id="vehicle1" value="Oui"> Oui
+                <input class="form-check-input" type="radio" name="vehicle" id="vehicle1" value="Oui" required> Oui
                 <input class="form-check-input" type="radio" name="vehicle" id="vehicle2" value="Non"> Non
             </div>
         </div>
         <div class="row">
             <div class="form-check form-check-inline col-xs-12 contract">
                 <label class="form-check-label">Avez-vous déjà trouvé une entreprise pour signer votre contrat de professionalisation ? *</label>
-                <input class="form-check-input" type="radio" name="contract" id="contract1" value="Oui"> <label for="oui">Oui</label>
+                <input class="form-check-input" type="radio" name="contract" id="contract1" value="Oui" required> <label for="oui">Oui</label>
                 <input class="form-check-input" type="radio" name="contract" id="contract2" value="Non"> <label for="non">Non</label>
             </div>
         </div>
@@ -143,7 +150,7 @@
                 <div class="row report-card">
                     <p class="col-xs-6">- Bulletins / Relevés de notes</p>
                     <input type="file" name="report-card" id="report-card" class="col-sm-6" accept="application/pdf">
-                    <a class="col-sm-12" id="plus" href="#"><img src="web/images/add.png" class="addAutreBulletin"/></a>
+                    <a class="col-sm-12" id="plus" href="#"><img src="images/add.png" class="addAutreBulletin"/></a>
                 </div>
                 <div class="row id-card">
                     <p class="inline-block col-sm-6">- Carte d'identité ou passeport</p>
@@ -168,7 +175,7 @@
         crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="web/js/add_report.js"></script>
+<script src="js/add_report.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
 </body>
 </html>

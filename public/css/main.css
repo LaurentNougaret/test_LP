@@ -8,7 +8,7 @@ header > img {
 }
 
 body {
-    background: url("/web/images/background.jpg") fixed center;
+    background: url("/public/images/background.jpg") fixed center;
     color: white;
 }
 

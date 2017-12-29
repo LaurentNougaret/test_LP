@@ -5,7 +5,7 @@
     <title>Récapitulatif de votre candidature</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="web/css/main.css"
+    <link rel="stylesheet" href="../public/css/main.css"
 </head>
 <body>
 <h1 class="text-center">Récapitulatif de votre candidature à la Licence L3 Gestion des ressources humaines</h1>
@@ -152,7 +152,7 @@
     crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="web/js/add_report.js"></script>
+<script src="../public/js/add_report.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
 </body>
 </html>
